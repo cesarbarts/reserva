@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block corpo %}
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script>
+    const mp = new MercadoPago("TEST-IgualADaView");
+
+    // Função para obter tipos de documentos
+    (async function getIdentificationTypes() {
+        try {
+            const identificationTypes = await mp.getIdentificationTypes();
+            const identificationTypeElement = document.getElementById('form-checkout__identificationType');
+
+            createSelectOptions(identificationTypeElement, identificationTypes);
+        } catch (e) {
+            console.error('Error getting identificationTypes: ', e);
+        }
+    })();
+
+    function createSelectOptions(elem, options, labelsAndKeys = { label: "name", value: "id" }) {
+        const { label, value } = labelsAndKeys;
+        elem.options.length = 0;
+
+        const tempOptions = document.createDocumentFragment();
+        options.forEach(option => {
+            const optValue = option[value];
+            const optLabel = option[label];
+
+            const opt = document.createElement('option');
+            opt.value = optValue;
+            opt.textContent = optLabel;
+
+            tempOptions.appendChild(opt);
+        });
+
+        elem.appendChild(tempOptions);
+    }
+
+    // Função para enviar os dados do formulário e obter o QR Code
+    async function processPayment(event) {
+        event.preventDefault();
+
+        const formData = new FormData(document.getElementById('form-checkout'));
+        const response = await fetch('/process_payment', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'pending') {
+            document.getElementById('qr-code').src = 'data:image/png;base64,' + result.point_of_interaction.transaction_data.qr_code_base64;
+            document.getElementById('qr-code-container').style.display = 'block';
+        } else {
+            alert('Erro ao processar o pagamento: ' + result.detail);
+        }
+
+        // Exibir o JSON da resposta
+        document.getElementById('response-json').textContent = JSON.stringify(result, null, 2);
+        document.getElementById('response-container').style.display = 'block';
+    }
+</script>
+
+<div class="row mt-5">
+  <div class="col-md-7 text-center">
+    <h2>Gere um QR Code Pix</h2>
+    <form id="form-checkout" onsubmit="processPayment(event)">
+        {% csrf_token %}
+        <div class="mt-2">
+            <label for="payerFirstName">Nome</label>
+            <input id="form-checkout__payerFirstName" name="payerFirstName" type="text" value="Cesar" required>
+        </div>
+        <div class="mt-2">
+            <label for="payerLastName">Sobrenome</label>
+            <input id="form-checkout__payerLastName" name="payerLastName" type="text" value="Augusto" required>
+        </div>
+        <div class="mt-2">
+            <label for="email">E-mail</label>
+            <input id="form-checkout__email" name="email" type="text" value="emailtestelegal@gmail.com" required>
+        </div>
+        <div class="mt-2">
+            <label for="identificationType">Tipo de documento</label>
+            <select id="form-checkout__identificationType" name="identificationType" required></select>
+        </div>
+        <div class="mt-2">
+            <label for="identificationNumber">Número do documento</label>
+            <input id="form-checkout__identificationNumber" name="identificationNumber" type="text" value="76897966053" required>
+        </div>
+        <input type="hidden" name="transactionAmount" id="transactionAmount" value="0.90">
+        <input type="hidden" name="description" id="description" value="Nome do Produto">
+        <button type="submit" class="btn btn-success">Pagar</button>
+    </form>
+  </div>
+
+  <div class="col-md-5">
+      <div id="qr-code-container" style="display:none;">
+          <h2>QR Code Pix</h2>
+          <img id="qr-code" src="" alt="QR Code Pix" width="60%" class="img-thumbnail">
+      </div>
+      <div id="response-container" style="display:none;">
+          <h2>Resposta JSON</h2>
+          <pre id="response-json" class="bg-light p-3 border rounded"></pre>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock corpo %}
