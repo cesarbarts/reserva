@@ -1,0 +1,168 @@
+{
+  "accounts_info": null,
+  "acquirer_reconciliation": [],
+  "additional_info": {
+    "authentication_code": null,
+    "available_balance": null,
+    "nsu_processadora": null
+  },
+  "authorization_code": null,
+  "binary_mode": false,
+  "brand_id": null,
+  "build_version": "3.64.0-rc-3",
+  "call_for_authorize_id": null,
+  "callback_url": null,
+  "captured": true,
+  "card": {},
+  "charges_details": [
+    {
+      "accounts": {
+        "from": "collector",
+        "to": "mp"
+      },
+      "amounts": {
+        "original": 0.89,
+        "refunded": 0
+      },
+      "client_id": 0,
+      "date_created": "2024-08-06T14:49:36.852-04:00",
+      "id": "1319131008-001",
+      "last_updated": "2024-08-06T14:49:36.852-04:00",
+      "metadata": {
+        "source": "rule-engine"
+      },
+      "name": "mercadopago_fee",
+      "refund_charges": [],
+      "reserve_id": null,
+      "type": "fee"
+    }
+  ],
+  "collector_id": 381711387,
+  "corporation_id": null,
+  "counter_currency": null,
+  "coupon_amount": 0,
+  "currency_id": "BRL",
+  "date_approved": null,
+  "date_created": "2024-08-06T14:49:36.847-04:00",
+  "date_last_updated": "2024-08-06T14:49:36.847-04:00",
+  "date_of_expiration": "2024-08-07T14:49:36.636-04:00",
+  "deduction_schema": "PROACTIVE_3",
+  "description": "Acesso",
+  "differential_pricing_id": null,
+  "external_reference": null,
+  "fee_details": [],
+  "financing_group": null,
+  "id": 1319131008,
+  "installments": 1,
+  "integrator_id": null,
+  "issuer_id": "12501",
+  "live_mode": false,
+  "marketplace_owner": null,
+  "merchant_account_id": null,
+  "merchant_number": null,
+  "metadata": {},
+  "money_release_date": null,
+  "money_release_schema": null,
+  "money_release_status": "released",
+  "notification_url": "https://linkDoSite.com/ipn",
+  "operation_type": "regular_payment",
+  "order": {},
+  "payer": {
+    "email": null,
+    "entity_type": null,
+    "first_name": null,
+    "id": "1933627836",
+    "identification": {
+      "number": null,
+      "type": null
+    },
+    "last_name": null,
+    "phone": {
+      "area_code": null,
+      "extension": null,
+      "number": null
+    },
+    "type": null
+  },
+  "payment_method": {
+    "id": "pix",
+    "issuer_id": "12501",
+    "type": "bank_transfer"
+  },
+  "payment_method_id": "pix",
+  "payment_type_id": "bank_transfer",
+  "platform_id": null,
+  "point_of_interaction": {
+    "application_data": {
+      "name": null,
+      "version": null
+    },
+    "business_info": {
+      "branch": null,
+      "sub_unit": "sdk",
+      "unit": "online_payments"
+    },
+    "location": {
+      "source": null,
+      "state_id": null
+    },
+    "transaction_data": {
+      "bank_info": {
+        "collector": {
+          "account_holder_name": "CegBx i Q aVpUe OFKho",
+          "account_id": null,
+          "long_name": null,
+          "transfer_account_id": null
+        },
+        "is_same_bank_account_owner": null,
+        "origin_bank_id": null,
+        "origin_wallet_id": null,
+        "payer": {
+          "account_holder_name": null,
+          "account_id": null,
+          "external_account_id": null,
+          "id": null,
+          "identification": {
+            "number": null,
+            "type": null
+          },
+          "long_name": null
+        }
+      },
+      "bank_transfer_id": null,
+      "e2e_id": null,
+      "financial_institution": null,
+      "qr_code": "00020126580014br.gov.bcb.pix0136b76aa9c2-2ec4-4110-954e-ebfe34f05b61520400005303986540590.005802BR5917CEtbMQJjYsnSKusHO6008ViCnlWia62230519mpqrinter131913100863043EA2",
+      "qr_code_base64": "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",
+      "ticket_url": "https://www.mercadopago.com.br/sandbox/payments/1319131008/ticket?caller_id=1933627836&hash=d0b94ec3-eeae-4321-827d-f0595a7f7091",
+      "transaction_id": null
+    },
+    "type": "OPENPLATFORM"
+  },
+  "pos_id": null,
+  "processing_mode": "aggregator",
+  "refunds": [],
+  "shipping_amount": 0,
+  "sponsor_id": null,
+  "statement_descriptor": null,
+  "status": "pending",
+  "status_detail": "pending_waiting_transfer",
+  "store_id": null,
+  "tags": null,
+  "taxes_amount": 0,
+  "transaction_amount": 90,
+  "transaction_amount_refunded": 0,
+  "transaction_details": {
+    "acquirer_reference": null,
+    "bank_transfer_id": null,
+    "external_resource_url": null,
+    "financial_institution": null,
+    "installment_amount": 0,
+    "net_received_amount": 0,
+    "overpaid_amount": 0,
+    "payable_deferral_period": null,
+    "payment_method_reference_id": null,
+    "total_paid_amount": 90,
+    "transaction_id": null
+  }
+}
